@@ -1,15 +1,23 @@
 import React, { Fragment } from 'react';
+import { Route, Switch } from "react-router-dom";
 
+import layoutStyles from './Layout.module.scss';
 import NavBar from '../navigation/Header/NavBar';
 import Toolbar from '../navigation/Toolbar/Toolbar';
+import SupplierStock from '../../containers/SupplierStock/SupplierStock';
+import Inventory from '../../containers/Inventory/Inventory';
 
 const Layout = ({ children }) => (
   <Fragment>
     <NavBar />
     <main className="d-flex flex-row">
       <Toolbar />
-      <section>
-        {children}
+      <section className={layoutStyles.mainSection}>
+        <Switch>
+          <Route exact path="/" component={SupplierStock} />
+          <Route path="/inventory" component={Inventory} />
+          <Route path="/return" component={() => <div>Topics</div>} />
+        </Switch>
       </section>
     </main>
   </Fragment>

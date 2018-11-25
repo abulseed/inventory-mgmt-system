@@ -15,7 +15,7 @@ import { itemsReducer } from './app/store';
 
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(itemsReducer)
+const store = createStore(itemsReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
   <Provider store={store}>

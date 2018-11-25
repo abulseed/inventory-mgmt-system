@@ -1,22 +1,20 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 
 import tbStyles from './Toolbar.module.scss';
 
-const navClassNames = `${tbStyles.Toolbar} nav nav-tabs nav-pills nav-dark flex-column`;
+const navClassNames = `${tbStyles.Toolbar} nav nav-pills flex-column p-2`;
 
 const Toolbar = () => (
   <ul className={navClassNames}>
     <li className="nav-item">
-      <a className="nav-link active" href="#">Active</a>
+      <NavLink className="nav-link" to="/" activeClassName="active" exact>Procure Items</NavLink>
     </li>
     <li className="nav-item">
-      <a className="nav-link" href="#">Link</a>
+      <NavLink className="nav-link" to="/inventory" activeClassName="active">Sell Items</NavLink>
     </li>
     <li className="nav-item">
-      <a className="nav-link" href="#">Link</a>
-    </li>
-    <li className="nav-item">
-      <a className="nav-link disabled" href="#">Disabled</a>
+      <NavLink className="nav-link" to="/return" activeClassName="active">Return Items</NavLink>
     </li>
   </ul>
 );
