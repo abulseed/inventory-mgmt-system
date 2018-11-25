@@ -10,3 +10,10 @@ export const procureItemFromSupplierAction = (item) => {
     item
   }
 }
+
+export const sellItemFromInventory = (item) => {
+  return {
+    type: SELL_TO_CUSTOMER,
+    item
+  }
+}
