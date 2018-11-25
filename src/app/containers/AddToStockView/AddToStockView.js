@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 
-import { validateForm } from './SupplierStock.helpers';
+import { validateForm } from './AddToStockView.helpers';
 import { procureItemFromSupplierAction } from '../../store';
 import ValidationError from '../../ui/ValidationError/ValidationError';
 
-class SupplierStock extends Component {
+class AddToStockView extends Component {
   state = {
     success: false
   }
@@ -84,4 +84,4 @@ class SupplierStock extends Component {
   }
 }
 
-export default connect()(SupplierStock);
+export default connect()(AddToStockView);
