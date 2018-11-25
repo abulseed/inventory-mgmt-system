@@ -12,24 +12,29 @@ class AddToStockView extends Component {
   }
 
   render() {
+    const isReturnComponent = this.props.match.path.toLowerCase().includes('return');
     let alertSubmitionStyle = 'alert alert-success alert-dismissible fade';
     if (this.state.success) {
       alertSubmitionStyle = `${alertSubmitionStyle} show`;
     }
     return (
       <div className="">
-        <h2>Buy an item from a supplier!</h2>
+        <h2>{isReturnComponent ? 'Return an item to the inventory!' : 'Buy an item from a supplier!'}</h2>
         <Formik
           initialValues={{ name: '', value: '', quantity: '' }}
           validate={validateForm}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values, { setSubmitting, resetForm }) => {
             this.props.dispatch(procureItemFromSupplierAction({
               name: values.name,
               value: +values.value,
               quantity: +values.quantity
             }));
             setSubmitting(false);
-            this.setState({ success: true })
+            this.setState({ success: true });
+            setTimeout(() => {
+              this.setState({ success: false });
+              resetForm({ name: '', value: '', quantity: '' });
+            }, 1000);
           }}>
           {({ values, isSubmitting }) => (
             <Form className="d-flex flex-column justify-content-between">
@@ -71,10 +76,7 @@ class AddToStockView extends Component {
                 Buy
               </button>
               <div className={alertSubmitionStyle} role="alert">
-                <strong>{values.name}</strong> is purchased successfully.
-                <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <strong>{values.name}</strong> {isReturnComponent ? 'is returned successfully.' : 'is purchased successfully.'}
               </div>
             </Form>
           )}

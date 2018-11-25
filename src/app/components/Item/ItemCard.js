@@ -27,10 +27,11 @@ class ItemCard extends Component {
       value: this.props.items[0].value,
       quantity: this.state.sellingQuantity,
     }));
+    this.setState({ sellingQuantity: 1 });
   }
 
   render() {
-    if (!this.props.items[0]) {
+    if (!this.props.items || !this.props.items[0]) {
       return null;
     }
     return (

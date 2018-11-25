@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+
 import ItemCard from '../../components/Item/ItemCard';
 
-class Inventory extends Component {
-  state = {};
-
-  constructor(props) {
-    super(props);
-    this.state = props.inventory;
+const Inventory = (props) => {
+  if (Object.keys(props.inventory).length === 0) {
+    return <h1>Please add new items to the inventory.</h1>
   }
-
-  render() {
-    return <div className="d-flex flex-row flex-wrap">
-      {Object.keys(this.state).map((key, index) => {
-        return <ItemCard key={key + index} itemName={key} />
-      })}
-    </div>
-  }
+  return <div className="d-flex flex-row flex-wrap">
+    {Object.keys(props.inventory).map((key, index) => {
+      return <ItemCard key={key + index} itemName={key} />
+    })}
+  </div>
 }
 
 const mapStateToProps = state => {
